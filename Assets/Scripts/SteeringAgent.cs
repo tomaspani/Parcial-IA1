@@ -15,7 +15,7 @@ public class SteeringAgent : MonoBehaviour
     protected void Move()
     {
         transform.position += _velocity * Time.deltaTime;
-        transform.forward = _velocity;
+        transform.right = _velocity;
     }
 
     protected void AddForce(Vector3 force)
