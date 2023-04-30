@@ -32,4 +32,9 @@ public class SteeringAgent : MonoBehaviour
     {
         return CalculateSteering((target - transform.position).normalized* _maxSpeed);
     }
+
+    protected Vector3 Flee(Vector3 target)
+    {
+        return -Seek(target);
+    }
 }
