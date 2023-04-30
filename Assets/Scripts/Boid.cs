@@ -13,8 +13,12 @@ public class Boid : SteeringAgent
     [Range(0f, 3f)] public float alignmentWeight;
     [Range(0f, 3f)] public float cohesionWeight;
     [Range(0f, 3f)] public float seekingWeight;
+    [Range(0f, 300f)] public float fleeingWeight;
+
+    [SerializeField] Transform _hunter;
 
     FoodManager _FM;
+    SpriteRenderer _spriteRenderer;
 
     private void Start()
     {
@@ -24,28 +28,47 @@ public class Boid : SteeringAgent
         BoidManager.instance.AddBoid(this);
 
         _FM = FindObjectOfType<FoodManager>();
+        _spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
     {
         transform.position = BoidManager.instance.UpdateBoundPosition(transform.position);
 
-       CheckFoodRange();
-       Flocking();
-       Move();
+        CheckHunterRange();
+        CheckFoodRange();
+        Flocking();
+        Move();
     }
 
     void CheckFoodRange()
     {
-        foreach(Food t in _FM.allFood)
+        foreach (Food t in _FM.allFood)
         {
             float distance = Vector3.Distance(t.transform.position, transform.position);
 
-            if(distance < viewRadius)
+            if (distance < viewRadius)
             {
-                AddForce(Seek(t.transform.position) * seekingWeight);
+                Arrive(t);
             }
         }
+    }
+
+    void CheckHunterRange()
+    {
+        float distance = Vector3.Distance(_hunter.position, transform.position);
+
+        if (distance < viewRadius)
+        {
+            AddForce(Flee(_hunter.position));
+        }
+    }
+
+    void Arrive(Food t)
+    {
+        if(Vector3.Distance(t.transform.position, transform.position) <= viewRadius)
+            this._spriteRenderer.color = Color.red;
+        AddForce(Seek(t.transform.position) * seekingWeight);
     }
 
     void Flocking()
@@ -96,7 +119,6 @@ public class Boid : SteeringAgent
 
     Vector3 Cohesion(HashSet<Boid> boids)
     {
-
         Vector3 desiredPos = Vector3.zero;
         int count = 0;
         foreach (var item in boids)
@@ -114,10 +136,6 @@ public class Boid : SteeringAgent
         return Seek(desiredPos);
     }
 
-    void Arrive()
-    {
-        //Seek(position); ARREGLAR
-    }
 
     void OnDrawGizmos()
     {

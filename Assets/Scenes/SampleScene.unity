@@ -232,11 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5867040508459104470, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.33
+      value: -12.28
       objectReference: {fileID: 0}
     - target: {fileID: 5867040508459104470, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.9
+      value: 10.08
       objectReference: {fileID: 0}
     - target: {fileID: 5867040508459104470, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: m_LocalPosition.z
@@ -591,6 +591,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &740791642 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5867040508459104470, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
+  m_PrefabInstance: {fileID: 388118674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &868645670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,6 +652,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: _hunter
+      value: 
+      objectReference: {fileID: 740791642}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxForce
       value: 0.02
       objectReference: {fileID: 0}
@@ -661,6 +670,10 @@ PrefabInstance:
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: fleeingWeight
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: seekingWeight
@@ -840,6 +853,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: _hunter
+      value: 
+      objectReference: {fileID: 740791642}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxForce
       value: 0.02
       objectReference: {fileID: 0}
@@ -854,6 +871,10 @@ PrefabInstance:
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: fleeingWeight
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: seekingWeight
@@ -949,6 +970,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: _hunter
+      value: 
+      objectReference: {fileID: 740791642}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxForce
       value: 0.02
       objectReference: {fileID: 0}
@@ -963,6 +988,10 @@ PrefabInstance:
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: fleeingWeight
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: seekingWeight
@@ -1066,6 +1095,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: _hunter
+      value: 
+      objectReference: {fileID: 740791642}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxForce
       value: 0.02
       objectReference: {fileID: 0}
@@ -1080,6 +1113,10 @@ PrefabInstance:
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: fleeingWeight
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: seekingWeight
@@ -1149,7 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   food: {fileID: 496430699522581906, guid: 78f593fab0068704f9e076e8e4f89b26, type: 3}
-  maxFood: 5
+  maxFood: 9
   currentFood: 0
 --- !u!4 &1412843765
 Transform:
@@ -1268,6 +1305,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: _hunter
+      value: 
+      objectReference: {fileID: 740791642}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxForce
       value: 0.02
       objectReference: {fileID: 0}
@@ -1282,6 +1323,10 @@ PrefabInstance:
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: fleeingWeight
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: seekingWeight
@@ -1377,6 +1422,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: _hunter
+      value: 
+      objectReference: {fileID: 740791642}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxForce
       value: 0.02
       objectReference: {fileID: 0}
@@ -1391,6 +1440,10 @@ PrefabInstance:
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
+      propertyPath: fleeingWeight
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: seekingWeight
