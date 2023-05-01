@@ -271,12 +271,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
+      propertyPath: xd
+      value: 
+      objectReference: {fileID: 1476106917}
+    - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 1476106917}
+    - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: _maxForce
       value: 0.0337
       objectReference: {fileID: 0}
     - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: _maxSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
+      propertyPath: maxEnergy
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
+      propertyPath: patrolCost
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: waypointRadius
@@ -1203,6 +1219,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1476106917 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3875096220874427351, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
+  m_PrefabInstance: {fileID: 388118674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1570878234
 GameObject:
   m_ObjectHideFlags: 0
