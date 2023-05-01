@@ -60,7 +60,7 @@ public class Boid : SteeringAgent
 
         if (distance < viewRadius)
         {
-            AddForce(Flee(_hunter.position));
+            AddForce(Flee(_hunter.position) * fleeingWeight);
         }
     }
 
