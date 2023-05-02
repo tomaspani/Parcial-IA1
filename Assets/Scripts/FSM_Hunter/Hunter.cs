@@ -8,7 +8,8 @@ public class Hunter : SteeringAgent
     public float waypointRadius;
     [SerializeField] float patrolCost;
     public Transform[] waypoints;
-
+    public LayerMask obstacleLayer;
+    public float avoidanceWeight;
 
     [Header("Stats")]
     public bool FullEnergy;
@@ -20,8 +21,6 @@ public class Hunter : SteeringAgent
     [SerializeField] float chaseRadius;
     [SerializeField] float destroyRadius;
     [SerializeField] float chaseCost;
-    public bool inPursuit;
-
 
     public SpriteRenderer sprite;
 
@@ -54,9 +53,17 @@ public class Hunter : SteeringAgent
         if (energy <= 0)
             FullEnergy = false;
 
+
+        Vector3 obstacleForce = ObstacleAvoidance();
+        //Vector3 force = obstacleForce == Vector3.zero ? CalculateSteering(transform.right * _maxSpeed) : obstacleForce;
+        AddForce(obstacleForce * avoidanceWeight);
+        
         Move();
         _fsm.Update();
-        
+
+
+
+
     }
 
     public void FollowWaypoints()
@@ -83,23 +90,20 @@ public class Hunter : SteeringAgent
 
     public SteeringAgent CheckPursuit()
     {
-        foreach(Boid b in allBoids)
+        foreach (Boid b in allBoids)
         {
-            if((Vector3.Distance(b.transform.position, transform.position)) <= chaseRadius)
+            if ((Vector3.Distance(b.transform.position, transform.position)) <= chaseRadius)
             {
-                inPursuit = true;
                 return b;
-                
             }
         }
-        inPursuit = false;
         return null;
     }
 
     public void DestroyBoid()
     {
         var b = CheckPursuit().GetComponent<Boid>();
-        if(Vector3.Distance(b.transform.position, transform.position) <= destroyRadius)
+        if (Vector3.Distance(b.transform.position, transform.position) <= destroyRadius)
         {
             b.DestroyThis();
         }
@@ -113,7 +117,7 @@ public class Hunter : SteeringAgent
 
         }
         else
-            energy = 0; 
+            energy = 0;
     }
 
     public void EnergyRegen(float x)
@@ -123,7 +127,7 @@ public class Hunter : SteeringAgent
             energy += x * Time.deltaTime;
 
         }
-        else 
+        else
             energy = maxEnergy;
     }
 
@@ -138,6 +142,30 @@ public class Hunter : SteeringAgent
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, destroyRadius);
+
+        Vector3 origin1 = transform.position + transform.up / 1.5f;
+        Vector3 origin2 = transform.position - transform.up / 1.5f;
+        Gizmos.DrawLine(origin1, origin1 + transform.right * chaseRadius);
+        Gizmos.DrawLine(origin2, origin2 + transform.right * chaseRadius);
+    }
+
+    Vector3 ObstacleAvoidance()
+    {
+        Vector3 desired = default;
+        Debug.Log("obstacle avoidance");
+        if (Physics.Raycast(transform.position + transform.up / 1.5f, _velocity, chaseRadius, obstacleLayer))
+        {
+            desired = -transform.up;
+            Debug.Log("if");
+        }
+        else if (Physics.Raycast(transform.position - transform.up / 1.5f, _velocity, chaseRadius, obstacleLayer))
+        {
+            desired = transform.up;
+            Debug.Log("else if");
+        }
+        else return desired;
+
+        return CalculateSteering(desired.normalized * _maxSpeed);
     }
 
 }

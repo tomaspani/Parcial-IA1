@@ -50,6 +50,9 @@ MonoBehaviour:
   _maxForce: 0.0137
   viewRadius: 0
   separationRadius: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
   separationWeight: 0
   alignmentWeight: 0
   cohesionWeight: 0

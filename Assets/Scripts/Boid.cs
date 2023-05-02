@@ -7,13 +7,15 @@ public class Boid : SteeringAgent
     [Header("Stats")]
     public float viewRadius;
     public float separationRadius;
+    public LayerMask obstacleLayer;
 
     [Header("Weights")]
-    [Range(0f, 3f)] public float separationWeight;
-    [Range(0f, 3f)] public float alignmentWeight;
-    [Range(0f, 3f)] public float cohesionWeight;
-    [Range(0f, 3f)] public float seekingWeight;
-    [Range(0f, 300f)] public float fleeingWeight;
+    [Range(0f, 10f)] public float separationWeight;
+    [Range(0f, 10f)] public float alignmentWeight;
+    [Range(0f, 10f)] public float cohesionWeight;
+    [Range(0f, 10f)] public float seekingWeight;
+    [Range(0f, 10f)] public float avoidanceWeight;
+    [Range(0f, 10f)] public float fleeingWeight;
 
     [SerializeField] Transform _hunter;
 
@@ -36,10 +38,13 @@ public class Boid : SteeringAgent
         transform.position = BoidManager.instance.UpdateBoundPosition(transform.position);
 
         CheckHunterRange();
-        CheckFoodRange();
         Flocking();
         Move();
         Arrive(CheckFoodRange());
+        
+        Vector3 obstacleForce = ObstacleAvoidance();
+        //Vector3 force = obstacleForce == Vector3.zero ? CalculateSteering(transform.right * _maxSpeed) : obstacleForce;
+        AddForce(obstacleForce * avoidanceWeight);
     }
 
     private Food CheckFoodRange()
@@ -52,9 +57,7 @@ public class Boid : SteeringAgent
             {
                 _spriteRenderer.color = Color.red;
                 return t;
-
             }
-
         }
         _spriteRenderer.color = Color.white;
         return null;
@@ -66,8 +69,10 @@ public class Boid : SteeringAgent
 
         if (distance < viewRadius)
         {
+            _spriteRenderer.color = Color.blue;
             AddForce(Flee(_hunter.position) * fleeingWeight);
         }
+        
     }
 
     void Arrive(Food t)
@@ -85,10 +90,6 @@ public class Boid : SteeringAgent
         AddForce(Cohesion(BoidManager.instance.allBoids) * cohesionWeight);
     }
 
-    Vector3 Separation(HashSet<Boid> boids)
-    {
-        return Separation(boids, viewRadius);
-    }
 
     Vector3 Separation(HashSet<Boid> boids, float radius)
     {
@@ -150,11 +151,30 @@ public class Boid : SteeringAgent
 
     }
 
+    Vector3 ObstacleAvoidance()
+    {
+        Vector3 desired = default;
+
+        if (Physics.Raycast(transform.position + transform.up / 2, _velocity, viewRadius, obstacleLayer))
+            desired = -transform.up;
+        else if (Physics.Raycast(transform.position - transform.up / 2, _velocity, viewRadius, obstacleLayer))
+            desired = transform.up;
+        else return desired;
+
+        return CalculateSteering(desired.normalized * _maxSpeed);
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, viewRadius);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, separationRadius);
+
+
+        Vector3 origin1 = transform.position + transform.up/2;
+        Vector3 origin2 = transform.position - transform.up/2;
+        Gizmos.DrawLine(origin1, origin1 + transform.right * viewRadius);
+        Gizmos.DrawLine(origin2, origin2 + transform.right * viewRadius);
     }
 }

@@ -46,6 +46,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373ef421799b42d429be0c33435541f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxSpeed: 0
+  _maxForce: 0
+  waypointRadius: 0
+  patrolCost: 0
+  waypoints: []
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  viewRadius: 0
+  FullEnergy: 0
+  energy: 0
+  maxEnergy: 0
+  restRegen: 0
+  chaseRadius: 0
+  destroyRadius: 0
+  chaseCost: 0
+  sprite: {fileID: 0}
 --- !u!1 &4153516751593319118
 GameObject:
   m_ObjectHideFlags: 0
