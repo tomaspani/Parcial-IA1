@@ -39,9 +39,10 @@ public class Boid : SteeringAgent
         CheckFoodRange();
         Flocking();
         Move();
+        Arrive(CheckFoodRange());
     }
 
-    void CheckFoodRange()
+    private Food CheckFoodRange()
     {
         foreach (Food t in _FM.allFood)
         {
@@ -49,11 +50,14 @@ public class Boid : SteeringAgent
 
             if (distance < viewRadius)
             {
-                Arrive(t);
+                _spriteRenderer.color = Color.red;
+                return t;
 
             }
 
         }
+        _spriteRenderer.color = Color.white;
+        return null;
     }
 
     void CheckHunterRange()
@@ -68,10 +72,10 @@ public class Boid : SteeringAgent
 
     void Arrive(Food t)
     {
-        if (Vector3.Distance(t.transform.position, transform.position) <= viewRadius)
-            this._spriteRenderer.color = Color.red;
-        
-        AddForce(Seek(t.transform.position) * seekingWeight);
+        /*if (Vector3.Distance(t.transform.position, transform.position) <= viewRadius)
+            this._spriteRenderer.color = Color.red;*/
+        if(t != null)
+            AddForce(Seek(t.transform.position) * seekingWeight);
     }
 
     void Flocking()

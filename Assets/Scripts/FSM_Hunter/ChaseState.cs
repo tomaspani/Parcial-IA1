@@ -6,10 +6,12 @@ public class ChaseState : State
 {
 
     Hunter _hunter;
+    float _cost;
 
-    public ChaseState(Hunter h)
+    public ChaseState(Hunter h, float cost)
     {
         _hunter = h;
+        _cost = cost;
     }
 
     public override void OnEnter()
@@ -28,7 +30,7 @@ public class ChaseState : State
         if (_hunter.CheckPursuit() && _hunter.energy > 0 )
         {
             _hunter.Chase(_hunter.CheckPursuit());
-            _hunter.EnergyDrain();
+            _hunter.EnergyDrain(_cost);
             _hunter.DestroyBoid();
         }
         else if (_hunter.CheckPursuit() == null)

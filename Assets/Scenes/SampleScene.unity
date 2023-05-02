@@ -280,19 +280,27 @@ PrefabInstance:
       objectReference: {fileID: 1476106917}
     - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: _maxForce
-      value: 0.0337
+      value: 0.0597
       objectReference: {fileID: 0}
     - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: _maxSpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
+      propertyPath: chaseCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: maxEnergy
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
+      propertyPath: restRegen
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: patrolCost
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: chaseRadius
@@ -739,7 +747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: viewRadius
-      value: 2.45
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
@@ -767,7 +775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: separationWeight
-      value: 1.33
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: allFood.Array.size
@@ -932,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 740791642}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxForce
-      value: 0.02
+      value: 0.0598
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxSpeed
@@ -940,7 +948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: viewRadius
-      value: 2.45
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
@@ -968,7 +976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: separationWeight
-      value: 1.33
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: allFood.Array.size
@@ -1057,7 +1065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: viewRadius
-      value: 2.45
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
@@ -1085,7 +1093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: separationWeight
-      value: 1.33
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: allFood.Array.size
@@ -1182,7 +1190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: viewRadius
-      value: 2.45
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
@@ -1210,7 +1218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: separationWeight
-      value: 1.33
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: allFood.Array.size
@@ -1419,7 +1427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: viewRadius
-      value: 2.45
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
@@ -1447,7 +1455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: separationWeight
-      value: 1.33
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: allFood.Array.size
@@ -1550,7 +1558,7 @@ PrefabInstance:
       objectReference: {fileID: 740791642}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxForce
-      value: 0.02
+      value: 0.0598
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _maxSpeed
@@ -1558,7 +1566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: viewRadius
-      value: 2.45
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: _inFoodRange
@@ -1586,7 +1594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: separationWeight
-      value: 1.33
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2775259140448714354, guid: 1fb0e0fc02b65be45abdab765d91bf18, type: 3}
       propertyPath: allFood.Array.size

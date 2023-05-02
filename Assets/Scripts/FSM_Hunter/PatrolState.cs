@@ -6,10 +6,13 @@ public class PatrolState : State
 {
 
     private Hunter _hunter;
+    float _cost;
 
-    public PatrolState( Hunter h)
+
+    public PatrolState(Hunter h, float cost)
     {
         _hunter = h;
+        _cost = cost;
     }
 
     public override void OnEnter()
@@ -30,7 +33,7 @@ public class PatrolState : State
             Debug.Log("a");
 
             _hunter.FollowWaypoints();
-            _hunter.EnergyDrain();
+            _hunter.EnergyDrain(_cost);
         }
         else if(_hunter.CheckPursuit())
         {

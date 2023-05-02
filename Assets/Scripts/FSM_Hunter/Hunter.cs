@@ -14,10 +14,12 @@ public class Hunter : SteeringAgent
     public bool FullEnergy;
     public float energy;
     [SerializeField] float maxEnergy;
+    [SerializeField] float restRegen;
 
     [Header("Chase")]
     [SerializeField] float chaseRadius;
     [SerializeField] float destroyRadius;
+    [SerializeField] float chaseCost;
     public bool inPursuit;
 
 
@@ -37,9 +39,9 @@ public class Hunter : SteeringAgent
 
         _fsm = new FiniteStateMachine();
 
-        _fsm.AddState(HunterStates.Rest, new RestState(this));
-        _fsm.AddState(HunterStates.Patrol, new PatrolState(this));
-        _fsm.AddState(HunterStates.Chase, new ChaseState(this));
+        _fsm.AddState(HunterStates.Rest, new RestState(this, restRegen));
+        _fsm.AddState(HunterStates.Patrol, new PatrolState(this, patrolCost));
+        _fsm.AddState(HunterStates.Chase, new ChaseState(this, chaseCost));
 
         _fsm.ChangeState(HunterStates.Patrol);
     }
@@ -103,22 +105,22 @@ public class Hunter : SteeringAgent
         }
     }
 
-    public void EnergyDrain()
+    public void EnergyDrain(float x)
     {
         if (energy > 0)
         {
-            energy -= patrolCost * Time.deltaTime;
+            energy -= x * Time.deltaTime;
 
         }
         else
             energy = 0; 
     }
 
-    public void EnergyRegen()
+    public void EnergyRegen(float x)
     {
         if (energy < maxEnergy)
         {
-            energy += 5 * Time.deltaTime;
+            energy += x * Time.deltaTime;
 
         }
         else 
