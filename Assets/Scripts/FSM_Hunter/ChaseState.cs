@@ -4,19 +4,41 @@ using UnityEngine;
 
 public class ChaseState : State
 {
+
+    Hunter _hunter;
+
+    public ChaseState(Hunter h)
+    {
+        _hunter = h;
+    }
+
     public override void OnEnter()
     {
-        throw new System.NotImplementedException();
+        _hunter.sprite.color = Color.red;
     }
 
     public override void OnExit()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+
+        if (_hunter.CheckPursuit() && _hunter.energy > 0 )
+        {
+            _hunter.Chase(_hunter.CheckPursuit());
+        }
+        else if (_hunter.CheckPursuit() == null)
+        {
+
+            fsm.ChangeState(HunterStates.Patrol);
+        }
+        else
+        {
+
+            fsm.ChangeState(HunterStates.Rest);
+        }
     }
 
 }

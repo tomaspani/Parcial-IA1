@@ -50,7 +50,9 @@ public class Boid : SteeringAgent
             if (distance < viewRadius)
             {
                 Arrive(t);
+
             }
+
         }
     }
 
@@ -66,8 +68,9 @@ public class Boid : SteeringAgent
 
     void Arrive(Food t)
     {
-        if(Vector3.Distance(t.transform.position, transform.position) <= viewRadius)
+        if (Vector3.Distance(t.transform.position, transform.position) <= viewRadius)
             this._spriteRenderer.color = Color.red;
+        
         AddForce(Seek(t.transform.position) * seekingWeight);
     }
 

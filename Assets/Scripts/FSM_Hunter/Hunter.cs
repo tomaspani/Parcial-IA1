@@ -4,35 +4,41 @@ using UnityEngine;
 
 public class Hunter : SteeringAgent
 {
-    public Transform[] waypoints;
-    public SpriteRenderer sprite;
-    public bool FullEnergy;
-
+    [Header("Waypoints")]
+    public float waypointRadius;
     [SerializeField] float patrolCost;
+    public Transform[] waypoints;
 
 
-    FiniteStateMachine _fsm;
-
+    [Header("Stats")]
+    public bool FullEnergy;
+    public float energy;
     [SerializeField] float maxEnergy;
 
-    public float energy;
-    public float waypointRadius;
+    [Header("Chase")]
+    public List<Boid> allBoids;
+    [SerializeField] float chaseRadius;
+    public bool inPursuit;
+
+
+    public SpriteRenderer sprite;
+
 
     private int _currentWaypoint;
 
+    FiniteStateMachine _fsm;
+
     private void Start()
     {
-
         energy = maxEnergy;
 
         _fsm = new FiniteStateMachine();
 
         _fsm.AddState(HunterStates.Rest, new RestState(this));
         _fsm.AddState(HunterStates.Patrol, new PatrolState(this));
-
+        _fsm.AddState(HunterStates.Chase, new ChaseState(this));
 
         _fsm.ChangeState(HunterStates.Patrol);
-
     }
 
     private void Update()
@@ -65,6 +71,26 @@ public class Hunter : SteeringAgent
         sprite.color = Color.yellow;
     }
 
+    public void Chase(SteeringAgent t)
+    {
+        AddForce(Pursuit(t));
+    }
+
+    public SteeringAgent CheckPursuit()
+    {
+        foreach(Boid b in allBoids)
+        {
+            if((Vector3.Distance(b.transform.position, transform.position)) <= chaseRadius)
+            {
+                inPursuit = true;
+                return b;
+                
+            }
+        }
+        inPursuit = false;
+        return null;
+    }
+
     public void EnergyDrain()
     {
         if (energy > 0)
@@ -91,8 +117,10 @@ public class Hunter : SteeringAgent
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-
         Gizmos.DrawWireSphere(waypoints[_currentWaypoint].position, waypointRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseRadius);
 
     }
 

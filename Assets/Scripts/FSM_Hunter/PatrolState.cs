@@ -7,9 +7,6 @@ public class PatrolState : State
 
     private Hunter _hunter;
 
-
-   
-
     public PatrolState( Hunter h)
     {
         _hunter = h;
@@ -27,13 +24,18 @@ public class PatrolState : State
 
     public override void Update()
     {
-        Debug.Log("a");
-        if(_hunter.energy > 0 /* && no hay ningun boid en rango*/)
+        if(_hunter.energy > 0 && _hunter.CheckPursuit() == null)
         {
 
-            Debug.Log("aa");
+            Debug.Log("a");
+
             _hunter.FollowWaypoints();
             _hunter.EnergyDrain();
+        }
+        else if(_hunter.CheckPursuit())
+        {
+            Debug.Log("aaa");
+            fsm.ChangeState(HunterStates.Chase);
         }
         else
         {
