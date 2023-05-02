@@ -28,6 +28,8 @@ public class ChaseState : State
         if (_hunter.CheckPursuit() && _hunter.energy > 0 )
         {
             _hunter.Chase(_hunter.CheckPursuit());
+            _hunter.EnergyDrain();
+            _hunter.DestroyBoid();
         }
         else if (_hunter.CheckPursuit() == null)
         {

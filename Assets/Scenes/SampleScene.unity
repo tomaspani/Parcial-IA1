@@ -299,6 +299,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
+      propertyPath: destroyRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237449362530643237, guid: f3bb87c9c195940438e834d83d2f5142, type: 3}
       propertyPath: waypointRadius
       value: 2
       objectReference: {fileID: 0}

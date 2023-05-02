@@ -16,8 +16,8 @@ public class Hunter : SteeringAgent
     [SerializeField] float maxEnergy;
 
     [Header("Chase")]
-    public List<Boid> allBoids;
     [SerializeField] float chaseRadius;
+    [SerializeField] float destroyRadius;
     public bool inPursuit;
 
 
@@ -27,10 +27,13 @@ public class Hunter : SteeringAgent
     private int _currentWaypoint;
 
     FiniteStateMachine _fsm;
+    HashSet<Boid> allBoids;
+
 
     private void Start()
     {
         energy = maxEnergy;
+        allBoids = BoidManager.instance.allBoids;
 
         _fsm = new FiniteStateMachine();
 
@@ -49,9 +52,9 @@ public class Hunter : SteeringAgent
         if (energy <= 0)
             FullEnergy = false;
 
-        //FollowWaypoints();
         Move();
         _fsm.Update();
+        
     }
 
     public void FollowWaypoints()
@@ -91,6 +94,15 @@ public class Hunter : SteeringAgent
         return null;
     }
 
+    public void DestroyBoid()
+    {
+        var b = CheckPursuit().GetComponent<Boid>();
+        if(Vector3.Distance(b.transform.position, transform.position) <= destroyRadius)
+        {
+            b.DestroyThis();
+        }
+    }
+
     public void EnergyDrain()
     {
         if (energy > 0)
@@ -119,9 +131,11 @@ public class Hunter : SteeringAgent
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(waypoints[_currentWaypoint].position, waypointRadius);
 
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, chaseRadius);
 
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, destroyRadius);
     }
 
 }

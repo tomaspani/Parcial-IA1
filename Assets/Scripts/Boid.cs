@@ -139,6 +139,12 @@ public class Boid : SteeringAgent
         return Seek(desiredPos);
     }
 
+    public void DestroyThis()
+    {
+        BoidManager.instance.allBoids.Remove(this);
+        Destroy(this.gameObject);
+
+    }
 
     void OnDrawGizmos()
     {
