@@ -16,7 +16,7 @@ public class Nodo : MonoBehaviour
 
     }
 
-    private void Start()
+    private void Update()
     {
         _vecinos = _nodeFOV.GetNeighbourghs();
     }
