@@ -6,8 +6,12 @@ public class Enemy : MonoBehaviour
 {
     FStateMachine _fsm;
     [SerializeField] float _speed = 3;
-    [SerializeField] List<Nodo> _waypoints = new List<Nodo>();
 
+    EPathFinding _pf = new EPathFinding();
+    List<Vector3> _path = new List<Vector3>();
+
+    [SerializeField] Nodo _start; 
+    [SerializeField] Nodo _end; 
 
     void Start()
     {
@@ -19,12 +23,19 @@ public class Enemy : MonoBehaviour
         _fsm.ChangeState(EnemyStates.Patrol);
     }
 
-    // Update is called once per frame
     void Update()
     {
         _fsm.Update();
     }
+
+
+    void Patrol()
+    {
+
+    }
+
 }
+
 
 public enum EnemyStates
 {
