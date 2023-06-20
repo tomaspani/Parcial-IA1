@@ -21,7 +21,7 @@ public class EnemyFOV : MonoBehaviour
         else
             _player.GetComponent<Renderer>().material.color = Color.green;
 
-        //lo de arriba solo funciona cuando hay 1 enemigo en escena 
+        //lo de arriba solo funciona cuando hay 1 enemigo en escena, era para probar
     }
 
 

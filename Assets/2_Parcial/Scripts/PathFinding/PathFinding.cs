@@ -304,7 +304,6 @@ public class PathFinding
         }
     }
 
-
     public IEnumerator GreedyBFSRoutine(Node start, Node goal)
     {
         PriorityQueue<Node> frontier = new PriorityQueue<Node>();
