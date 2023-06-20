@@ -6,6 +6,8 @@ public class Nodo : MonoBehaviour
 {
     [SerializeField] List<Nodo> _vecinos = new List<Nodo>();
 
+    int _cost = 1;
+    public int Cost { get { return _cost; } }
 
 
     private NodeFOV _nodeFOV;
@@ -16,8 +18,13 @@ public class Nodo : MonoBehaviour
 
     }
 
-    private void Update()
+    private void Start()
     {
         _vecinos = _nodeFOV.GetNeighbourghs();
+    }
+
+    public List<Nodo> GetNeighbors()
+    {
+        return _vecinos;
     }
 }

@@ -6,18 +6,18 @@ public class EPathFinding : MonoBehaviour
 {
     public WaitForSeconds time = new WaitForSeconds(0.01f);
 
-    public List<Vector3> AStar(Node start, Node goal)
+    public List<Vector3> AStar(Nodo start, Nodo goal)
     {
-        PriorityQueue<Node> frontier = new PriorityQueue<Node>();
+        PriorityQueue<Nodo> frontier = new PriorityQueue<Nodo>();
         frontier.Enqueue(start, 0);
 
-        Dictionary<Node, Node> cameFrom = new Dictionary<Node, Node>();
+        Dictionary<Nodo, Nodo> cameFrom = new Dictionary<Nodo, Nodo>();
         cameFrom.Add(start, null);
 
-        Dictionary<Node, int> costSoFar = new Dictionary<Node, int>();
+        Dictionary<Nodo, int> costSoFar = new Dictionary<Nodo, int>();
         costSoFar.Add(start, 0);
 
-        Node current = default;
+        Nodo current = default;
 
         while (frontier.Count != 0)
         {
@@ -27,7 +27,7 @@ public class EPathFinding : MonoBehaviour
 
             foreach (var next in current.GetNeighbors())
             {
-                if (next.Blocked) continue;
+                //if (next.Blocked) continue;
 
                 int newCost = costSoFar[current] + next.Cost;
 
@@ -66,7 +66,7 @@ public class EPathFinding : MonoBehaviour
                                              // return (end - start).sqrMagnitude; //mas liviano menos presicion
     }
 
-
+    #region Old
     public IEnumerator AStarRoutine(Node start, Node goal)
     {
         PriorityQueue<Node> frontier = new PriorityQueue<Node>();
@@ -123,5 +123,5 @@ public class EPathFinding : MonoBehaviour
             yield return time;
         }
     }
-
+    #endregion
 }

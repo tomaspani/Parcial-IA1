@@ -9,6 +9,8 @@ public class EnemyFOV : MonoBehaviour
     [SerializeField] [Range(0, 15)] float _viewRange;
 
     [SerializeField] LayerMask _wallLayer;
+    [SerializeField] LayerMask _nodeLayer;
+    [SerializeField] LayerMask _playerLayer;
 
     [SerializeField] Player _player;
 
@@ -16,18 +18,13 @@ public class EnemyFOV : MonoBehaviour
     private void Update()
     {
 
-        if (InFOV(_player.transform.position) == true)
-            _player.GetComponent<Renderer>().material.color = Color.red;
-        else
-            _player.GetComponent<Renderer>().material.color = Color.green;
-
-        //lo de arriba solo funciona cuando hay 1 enemigo en escena, era para probar
     }
 
 
 
-    bool InFOV(Vector3 endPos)
+    public bool InFOV(Vector3 endPos)
     {
+
         Vector3 dir = endPos - transform.position;
         if (dir.magnitude > _viewRange) return false;
         if (Vector3.Angle(transform.forward, dir) > _viewAngle / 2) return false;
@@ -43,7 +40,7 @@ public class EnemyFOV : MonoBehaviour
 
 
 
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, _viewRange);
