@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float _speed = 5f;
     public bool spotted;
+    public Vector3 firstSeenPos;
 
     private void Update()
     {

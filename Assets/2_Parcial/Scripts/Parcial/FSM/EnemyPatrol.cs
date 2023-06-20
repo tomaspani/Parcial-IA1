@@ -28,13 +28,15 @@ public class EnemyPatrol : CurrentState
         var target = player.transform.position;
         if (enemy.fov.InFOV(target))
         {
-            enemy.firstSeenPos = target;
+
+            player.firstSeenPos = target;
+            Debug.Log(player.firstSeenPos);
             fsm.ChangeState(EnemyStates.Chase);
         }
-        /*else if (player.spotted)
+        else if (player.spotted)
         {
-            //xd
-        }*/
+            fsm.ChangeState(EnemyStates.PlayerSpotted);
+        }
         else
         {
             enemy.Patrol();

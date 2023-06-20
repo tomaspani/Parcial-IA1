@@ -10,13 +10,13 @@ public class Enemy : MonoBehaviour
 
     EPathFinding _pf = new EPathFinding();
     public EnemyFOV fov;
+
     List<Vector3> _path = new List<Vector3>();
 
     [SerializeField] List<Nodo> _patrolRoute;
+
     int _currentWaypoint;
 
-    [SerializeField] Nodo _start; 
-    [SerializeField] Nodo _end; 
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
         _fsm = new FStateMachine();
         _fsm.AddState(EnemyStates.Patrol, new EnemyPatrol(this, player));
         _fsm.AddState(EnemyStates.Chase, new EnemyChase(this, player));
-        _fsm.AddState(EnemyStates.PlayerSpotted, new EnemyChase(this, player));
+        _fsm.AddState(EnemyStates.PlayerSpotted, new EnemyPlayerSpotted(this, player));
 
         _fsm.ChangeState(EnemyStates.Patrol);
     }
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 
     public void Patrol()
     {
-        Vector3 target = _patrolRoute[_currentWaypoint].transform.position - Vector3.forward; //Esto lo hacemos en este ejemplo para que no se meta adentro del nodo 
+        Vector3 target = _patrolRoute[_currentWaypoint].transform.position - Vector3.forward; 
         Vector3 dir = target - transform.position;
         transform.rotation = Quaternion.LookRotation(dir);
         if (fov.InFOV(target))
@@ -50,38 +50,72 @@ public class Enemy : MonoBehaviour
             if (_currentWaypoint >= _patrolRoute.Count)
                 _currentWaypoint = 0;
         }
+        else
+        {
+
+        }
         
-        //_path = _pf.AStar(start, goal);
     }
 
-    public Vector3 firstSeenPos;
 
     public void Chase(Vector3 player)
     {
         Debug.Log(" Chase");
-        Vector3 target = player - Vector3.forward; //Esto lo hacemos en este ejemplo para que no se meta adentro del nodo 
-
+        Vector3 target = player - Vector3.forward;
         Vector3 dir = target - transform.position;
         transform.rotation = Quaternion.LookRotation(dir);
         transform.position += dir.normalized * _speed * Time.deltaTime;
         
     }
 
+    public void MakePath(Vector3 start, Vector3 goal)
+    {
+        Debug.Log(FindNearestNodo(start));
+        Debug.Log(FindNearestNodo(goal));
+        //_path = _pf.AStar(FindNearestNodo(start), FindNearestNodo(goal));
+    }
 
-    void TravelPath()
+    public void TravelPath()
     {
 
-        //Completar la siguiente funcion para que el agente recorra el camino
-        //devuelto por pathfinding
-        Vector3 target = _path[0] - Vector3.forward; //Esto lo hacemos en este ejemplo para que no se meta adentro del nodo 
+        Vector3 target = _path[0] - Vector3.forward;
         Vector3 dir = target - transform.position;
+        transform.rotation = Quaternion.LookRotation(dir);
         transform.position += dir.normalized * _speed * Time.deltaTime;
 
         if (Vector3.Distance(target, transform.position) <= 0.1f) _path.RemoveAt(0);
-
-
     }
 
+    public bool CheckPath()
+    {
+        if (_path.Count > 0)
+            return true;
+        return false;
+
+    } 
+
+    private Nodo FindNearestNodo(Vector3 pos)
+    {
+        Collider[] colliders = Physics.OverlapSphere(pos, 15f, LayerMask.NameToLayer("Node"));
+        float minDistance = 1000f;
+        Nodo closestNodo = null;
+        foreach (Collider c in colliders)
+        {
+            var distance = Vector3.Distance(pos, c.transform.position);
+            if (distance < minDistance && InLOS(pos, c.transform.position, LayerMask.NameToLayer("Wall")))
+            {
+                minDistance = distance;
+                closestNodo = c.GetComponent<Nodo>();
+            }
+        }
+        return closestNodo;
+    }
+
+    bool InLOS(Vector3 start, Vector3 end, LayerMask obstacle)
+    {
+        Vector3 dir = end - start;
+        return !Physics.Raycast(start, dir, dir.magnitude, obstacle);
+    }
 }
 
 

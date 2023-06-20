@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EPathFinding : MonoBehaviour
+public class EPathFinding
 {
     public WaitForSeconds time = new WaitForSeconds(0.01f);
 

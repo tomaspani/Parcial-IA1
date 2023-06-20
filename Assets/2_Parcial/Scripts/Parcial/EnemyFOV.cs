@@ -15,11 +15,7 @@ public class EnemyFOV : MonoBehaviour
     [SerializeField] Player _player;
 
 
-    private void Update()
-    {
-
-    }
-
+    
 
 
     public bool InFOV(Vector3 endPos)

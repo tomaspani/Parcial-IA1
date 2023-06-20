@@ -34,21 +34,11 @@ public class NodeFOV : MonoBehaviour
     bool InFOV(Vector3 endPos)
     {
         Vector3 dir = (endPos - transform.position).normalized;
-        //Debug.DrawLine(transform.position, endPos);
-        //if (dir.magnitude > _viewRange) return false;
-        //if (Vector3.Angle(transform.forward, dir) > _viewAngle / 2) return false;
-        //if (!InLOS(dir))
         if(!InLOS(transform.position, endPos))
             return false;
         return true;
     }
 
-    /*
-    //Line of sight
-    bool InLOS(Vector3 dir)
-    {
-        return !Physics.Raycast(transform.position, dir, dir.magnitude, _wallLayer);
-    }*/
 
     bool InLOS(Vector3 start, Vector3 end)
     {
