@@ -4,20 +4,32 @@ using UnityEngine;
 
 public class EnemyChase : CurrentState
 {
-    //if (FOV) entonces va hacia nodo, else lo calcula con A* --> seria asi??
+    Enemy enemy;
+    Player player;
+
+    public EnemyChase(Enemy e, Player p)
+    {
+        enemy = e;
+        player = p;
+    }
+
 
     public override void OnEnter()
     {
+        player.spotted = true;
 
     }
 
     public override void OnExit()
     {
-
+        player.spotted = false;
     }
 
     public override void Update()
     {
-
+        if (enemy.fov.InFOV(player.transform.position))
+            enemy.Chase(player.transform.position);
+        else
+            fsm.ChangeState(EnemyStates.Patrol);
     }
 }

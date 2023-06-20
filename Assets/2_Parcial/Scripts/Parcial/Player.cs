@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float _speed = 5f;
-
+    public bool spotted;
 
     private void Update()
     {
