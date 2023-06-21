@@ -58,10 +58,22 @@ public class Enemy : MonoBehaviour
         
     }
 
-
-    public void Chase(Vector3 player)
+    public void GoToPlayerFirstSeenPos()
     {
-        Vector3 target = player - Vector3.forward;
+        if (fov.InFOV(player.firstSeenPos))
+        {
+            Chase(player.firstSeenPos);
+            if (Vector3.Distance(player.firstSeenPos, transform.position) <= 0.05f) _path.Clear();
+        }
+        else
+        {
+            TravelPath();
+        }
+    }
+
+    public void Chase(Vector3 t)
+    {
+        Vector3 target = t - Vector3.forward;
         Vector3 dir = target - transform.position;
         transform.rotation = Quaternion.LookRotation(dir);
         transform.position += dir.normalized * _speed * Time.deltaTime;
@@ -70,7 +82,6 @@ public class Enemy : MonoBehaviour
 
     public void MakePath(Vector3 start, Vector3 goal)
     {
-
         _path = _pf.AStar(FindNearestNodo(start), FindNearestNodo(goal));
         _path.Reverse();
     }

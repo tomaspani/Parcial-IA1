@@ -35,7 +35,7 @@ public class EnemyPlayerSpotted : CurrentState
         }
         else if(_enemy.CheckPath())
         {
-            _enemy.TravelPath();
+            _enemy.GoToPlayerFirstSeenPos();
         }
         else
         {

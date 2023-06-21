@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyPatrol : CurrentState
 {
-    Enemy enemy;
-    Player player;
+    Enemy _enemy;
+    Player _player;
 
     public EnemyPatrol(Enemy e, Player p)
     {
-        enemy = e;
-        player = p;
+        _enemy = e;
+        _player = p;
     }
 
     public override void OnEnter()
@@ -26,20 +26,20 @@ public class EnemyPatrol : CurrentState
 
     public override void Update()
     {
-        var target = player.transform.position;
-        if (enemy.fov.InFOV(target))
+        var target = _player.transform.position;
+        if (_enemy.fov.InFOV(target))
         {
 
-            player.firstSeenPos = target;
+            _player.firstSeenPos = target;
             fsm.ChangeState(EnemyStates.Chase);
         }
-        else if (player.spotted)
+        else if (_player.spotted)
         {
             fsm.ChangeState(EnemyStates.PlayerSpotted);
         }
         else
         {
-            enemy.Patrol();
+            _enemy.Patrol();
         }
     }
 }
