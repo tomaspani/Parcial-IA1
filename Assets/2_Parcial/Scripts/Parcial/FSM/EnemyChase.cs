@@ -16,12 +16,14 @@ public class EnemyChase : CurrentState
 
     public override void OnEnter()
     {
+        Debug.Log("Chase");
         player.spotted = true;
 
     }
 
     public override void OnExit()
     {
+
         player.spotted = false;
     }
 

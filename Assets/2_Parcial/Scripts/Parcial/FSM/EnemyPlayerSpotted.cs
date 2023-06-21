@@ -16,11 +16,13 @@ public class EnemyPlayerSpotted : CurrentState
 
     public override void OnEnter()
     {
+        Debug.Log("Player Spotted");
         _enemy.MakePath(_enemy.transform.position, _player.firstSeenPos);
     }
 
     public override void OnExit()
     {
+
     }
 
     public override void Update()
@@ -37,7 +39,9 @@ public class EnemyPlayerSpotted : CurrentState
         }
         else
         {
+            _enemy.MakePath(_enemy.transform.position, _enemy._patrolRoute[_enemy.currentWaypoint].transform.position);
             fsm.ChangeState(EnemyStates.Patrol);
+           
         }
     }
 

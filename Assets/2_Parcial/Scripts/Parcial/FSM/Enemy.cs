@@ -13,9 +13,9 @@ public class Enemy : MonoBehaviour
 
     List<Vector3> _path = new List<Vector3>();
 
-    [SerializeField] List<Nodo> _patrolRoute;
+    public List<Nodo> _patrolRoute;
 
-    int _currentWaypoint;
+    public int currentWaypoint;
 
 
     void Start()
@@ -39,20 +39,21 @@ public class Enemy : MonoBehaviour
 
     public void Patrol()
     {
-        Vector3 target = _patrolRoute[_currentWaypoint].transform.position - Vector3.forward; 
+        Vector3 target = _patrolRoute[currentWaypoint].transform.position - Vector3.forward; 
         Vector3 dir = target - transform.position;
         transform.rotation = Quaternion.LookRotation(dir);
         if (fov.InFOV(target))
         {
             transform.position += dir.normalized * _speed * Time.deltaTime;
-            if (Vector3.Distance(target, transform.position) <= 0.05f) _currentWaypoint++;
+            if (Vector3.Distance(target, transform.position) <= 0.05f) currentWaypoint++;
 
-            if (_currentWaypoint >= _patrolRoute.Count)
-                _currentWaypoint = 0;
+            if (currentWaypoint >= _patrolRoute.Count)
+                currentWaypoint = 0;
         }
         else
         {
-
+            if(CheckPath())
+                TravelPath();
         }
         
     }
@@ -60,7 +61,6 @@ public class Enemy : MonoBehaviour
 
     public void Chase(Vector3 player)
     {
-        Debug.Log(" Chase");
         Vector3 target = player - Vector3.forward;
         Vector3 dir = target - transform.position;
         transform.rotation = Quaternion.LookRotation(dir);
@@ -70,14 +70,13 @@ public class Enemy : MonoBehaviour
 
     public void MakePath(Vector3 start, Vector3 goal)
     {
-        Debug.Log(FindNearestNodo(start));
-        Debug.Log(FindNearestNodo(goal));
-        //_path = _pf.AStar(FindNearestNodo(start), FindNearestNodo(goal));
+
+        _path = _pf.AStar(FindNearestNodo(start), FindNearestNodo(goal));
+        _path.Reverse();
     }
 
     public void TravelPath()
     {
-
         Vector3 target = _path[0] - Vector3.forward;
         Vector3 dir = target - transform.position;
         transform.rotation = Quaternion.LookRotation(dir);
@@ -96,13 +95,13 @@ public class Enemy : MonoBehaviour
 
     private Nodo FindNearestNodo(Vector3 pos)
     {
-        Collider[] colliders = Physics.OverlapSphere(pos, 15f, LayerMask.NameToLayer("Node"));
+        Collider[] colliders = Physics.OverlapSphere(pos, 15f, fov._nodeLayer);
         float minDistance = 1000f;
         Nodo closestNodo = null;
         foreach (Collider c in colliders)
         {
             var distance = Vector3.Distance(pos, c.transform.position);
-            if (distance < minDistance && InLOS(pos, c.transform.position, LayerMask.NameToLayer("Wall")))
+            if (distance < minDistance && InLOS(pos, c.transform.position, fov._wallLayer))
             {
                 minDistance = distance;
                 closestNodo = c.GetComponent<Nodo>();

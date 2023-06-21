@@ -8,9 +8,8 @@ public class EnemyFOV : MonoBehaviour
     [SerializeField] [Range(0, 360)] float _viewAngle;
     [SerializeField] [Range(0, 15)] float _viewRange;
 
-    [SerializeField] LayerMask _wallLayer;
-    [SerializeField] LayerMask _nodeLayer;
-    [SerializeField] LayerMask _playerLayer;
+    public LayerMask _wallLayer; 
+    public LayerMask _nodeLayer;
 
     [SerializeField] Player _player;
 

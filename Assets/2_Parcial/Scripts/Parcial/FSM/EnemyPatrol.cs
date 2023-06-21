@@ -15,6 +15,7 @@ public class EnemyPatrol : CurrentState
 
     public override void OnEnter()
     {
+        Debug.Log("Patrol");
 
     }
 
@@ -30,7 +31,6 @@ public class EnemyPatrol : CurrentState
         {
 
             player.firstSeenPos = target;
-            Debug.Log(player.firstSeenPos);
             fsm.ChangeState(EnemyStates.Chase);
         }
         else if (player.spotted)
