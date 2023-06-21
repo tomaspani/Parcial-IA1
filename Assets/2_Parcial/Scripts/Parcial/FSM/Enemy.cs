@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    FStateMachine _fsm;
     [SerializeField] float _speed = 3;
     [SerializeField] Player player;
 
+    FStateMachine _fsm;
     EPathFinding _pf = new EPathFinding();
-    public EnemyFOV fov;
 
     List<Vector3> _path = new List<Vector3>();
+
+    public EnemyFOV fov;
 
     public List<Nodo> _patrolRoute;
 
@@ -31,11 +32,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-
         _fsm.Update();
-
     }
-
 
     public void Patrol()
     {
@@ -55,7 +53,6 @@ public class Enemy : MonoBehaviour
             if(CheckPath())
                 TravelPath();
         }
-        
     }
 
     public void GoToPlayerFirstSeenPos()

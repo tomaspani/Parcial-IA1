@@ -11,15 +11,9 @@ public class EnemyFOV : MonoBehaviour
     public LayerMask _wallLayer; 
     public LayerMask _nodeLayer;
 
-    [SerializeField] Player _player;
-
-
-    
-
 
     public bool InFOV(Vector3 endPos)
     {
-
         Vector3 dir = endPos - transform.position;
         if (dir.magnitude > _viewRange) return false;
         if (Vector3.Angle(transform.forward, dir) > _viewAngle / 2) return false;
@@ -32,8 +26,6 @@ public class EnemyFOV : MonoBehaviour
         Vector3 dir = end - start;
         return !Physics.Raycast(start, dir, dir.magnitude, _wallLayer);
     }
-
-
 
     void OnDrawGizmosSelected()
     {

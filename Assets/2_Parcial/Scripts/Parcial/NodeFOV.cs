@@ -10,9 +10,6 @@ public class NodeFOV : MonoBehaviour
     [SerializeField] [Range(0, 360)] float _viewAngle;
     [SerializeField] [Range(0, 15)] float _viewRange;
 
-
-    
-
     public List<Nodo> GetNeighbourghs()
     {
         List<Nodo> result = new List<Nodo>();
@@ -29,8 +26,6 @@ public class NodeFOV : MonoBehaviour
         return result;
     }
 
-
-
     bool InFOV(Vector3 endPos)
     {
         Vector3 dir = (endPos - transform.position).normalized;
@@ -39,16 +34,11 @@ public class NodeFOV : MonoBehaviour
         return true;
     }
 
-
     bool InLOS(Vector3 start, Vector3 end)
     {
         Vector3 dir = end - start;
         return !Physics.Raycast(start, dir, dir.magnitude, _wallLayer);
     }
-
-
-
-
 
     void OnDrawGizmosSelected()
     {

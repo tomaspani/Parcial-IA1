@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class EnemyChase : CurrentState
 {
-    Enemy enemy;
-    Player player;
+    Enemy _enemy;
+    Player _player;
 
     public EnemyChase(Enemy e, Player p)
     {
-        enemy = e;
-        player = p;
+        _enemy = e;
+        _player = p;
     }
 
 
     public override void OnEnter()
     {
         Debug.Log("Chase");
-        player.spotted = true;
+        _player.spotted = true;
 
     }
 
     public override void OnExit()
     {
 
-        player.spotted = false;
+        _player.spotted = false;
     }
 
     public override void Update()
     {
-        if (enemy.fov.InFOV(player.transform.position))
-            enemy.Chase(player.transform.position);
+        if (_enemy.fov.InFOV(_player.transform.position))
+            _enemy.Chase(_player.transform.position);
         else
             fsm.ChangeState(EnemyStates.Patrol);
     }

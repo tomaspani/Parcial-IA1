@@ -7,7 +7,6 @@ public class EnemyPlayerSpotted : CurrentState
     Enemy _enemy;
     Player _player;
 
-
     public EnemyPlayerSpotted(Enemy e, Player p)
     {
         _enemy = e;
